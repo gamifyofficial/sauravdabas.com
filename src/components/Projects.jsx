@@ -1,66 +1,89 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Globe, Smartphone, ShoppingBag, Search, Heart, MessageCircle, Gamepad2, Store } from 'lucide-react';
 import './Projects.css';
 
-const projectsData = [
+const productsData = [
   {
-    title: 'Gamifytech Solutions',
-    type: 'Solo Founder',
-    year: '2023 - Present',
-    description: 'Developed and scaled multiple web and mobile applications including FastSEO, Shaadi AI, and Alova.',
-    link: 'https://gamifytechsolutions.com',
-    stats: '30,000+ Users',
-  },
-  {
-    title: 'Alova App',
-    type: 'iOS, Android & Web',
-    year: '2024',
-    description: 'Flutterflow app with Firebase backend and RevenueCat subscriptions. Scaled user acquisition via Google Ads.',
+    title: 'Alova',
+    subtitle: 'iOS, Android & Web',
+    icon: Heart,
+    description: 'Scaled to 30,000+ users. Built with Flutterflow, Firebase, RevenueCat, AdMob, self-hosted n8n, OpenAI API, Mailchimp, and Google Ads.',
     link: 'https://alova.one',
     stats: '30,000+ Users',
   },
   {
     title: 'Shaadi AI',
-    type: 'iOS, Android & Web',
-    year: '2023',
-    description: 'AI-driven matchmaking platform integrating OpenAI Vision API and Gemini for intelligent image analysis.',
+    subtitle: 'iOS, Android & Web',
+    icon: MessageCircle,
+    description: 'AI-powered platform with 2,000+ users. Integrates OpenAI Vision API, Gemini Nano Banana, RevenueCat, AdMob, and Firebase.',
     link: 'https://myshaadiai.com',
     stats: '2,000+ Users',
   },
   {
-    title: 'E-commerce Ventures',
-    type: 'Founder',
-    year: '2020 - 2022',
-    description: 'Launched multiple e-commerce websites on Shopify. Scaled to 10M+ reach through Facebook Ads & influencer marketing.',
+    title: 'Gamify',
+    subtitle: 'Android',
+    icon: Gamepad2,
+    description: 'Mobile app with 3,000+ users. Built on Flutterflow with Firebase backend and AdMob monetization.',
+    link: 'https://gamifytechsolutions.com',
+    stats: '3,000+ Users',
+  },
+  {
+    title: 'Qkap',
+    subtitle: 'iOS',
+    icon: Smartphone,
+    description: 'iOS app with 2,000+ users. Powered by Flutterflow, Firebase, RevenueCat, and OpenAI Vision API.',
     link: null,
-    stats: 'Legends Status on Meesho',
+    stats: '2,000+ Users',
+  },
+  {
+    title: 'FastSEO',
+    subtitle: 'Web App',
+    icon: Search,
+    description: 'SEO tool created using Base44 with integrated Dodo payments for streamlined monetization.',
+    link: 'https://FastSEO.app',
+    stats: 'Live Product',
+  },
+  {
+    title: 'Daily Sale',
+    subtitle: 'E-Commerce (Shopify)',
+    icon: ShoppingBag,
+    description: 'E-commerce storefront built on Shopify, part of a multi-store reselling operation with 10M+ social media reach.',
+    link: 'https://dailysale.in',
+    stats: '10M+ Reach',
   },
 ];
 
 const Projects = () => {
   return (
-    <section className="projects" id="projects">
+    <section className="products" id="products">
       <div className="container">
-        <div className="projects-header reveal">
-          <p className="projects-label">Selected Work</p>
-          <h2 className="projects-title">Things I've Built.</h2>
+        <div className="products-header reveal">
+          <p className="section-label">Product Portfolio</p>
+          <h2 className="section-title">Products I've Built.</h2>
+          <p className="products-subtitle">
+            Every product below was conceived, built, launched, and scaled by me as a solo founder.
+          </p>
         </div>
 
-        <div className="projects-grid">
-          {projectsData.map((project, index) => (
-            <div className={`project-card reveal reveal-delay-${index + 1}`} key={index}>
-              <div className="project-meta">
-                <span className="project-year">{project.year}</span>
-                <span className="project-type">{project.type}</span>
+        <div className="products-grid">
+          {productsData.map((product, index) => (
+            <div className={`product-card reveal reveal-delay-${Math.min(index + 1, 4)}`} key={index}>
+              <div className="product-card-top">
+                <div className="product-icon">
+                  <product.icon size={20} />
+                </div>
+                <div className="product-meta">
+                  <span className="product-subtitle">{product.subtitle}</span>
+                </div>
               </div>
 
-              <h3 className="project-name">{project.title}</h3>
-              <p className="project-desc">{project.description}</p>
+              <h3 className="product-name">{product.title}</h3>
+              <p className="product-desc">{product.description}</p>
 
-              <div className="project-footer">
-                <span className="project-stats">{project.stats}</span>
-                {project.link && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+              <div className="product-footer">
+                <span className="product-stats">{product.stats}</span>
+                {product.link && (
+                  <a href={product.link} target="_blank" rel="noopener noreferrer" className="product-link">
                     Visit <ArrowUpRight size={14} />
                   </a>
                 )}

@@ -5,10 +5,12 @@
   --bg-secondary: #111111;
   --bg-card: #161616;
   --bg-card-hover: #1c1c1c;
+  --bg-elevated: #1a1a1a;
   --text-primary: #ffffff;
   --text-secondary: #888888;
   --text-tertiary: #555555;
   --accent-dim: rgba(255, 255, 255, 0.06);
+  --accent-subtle: rgba(255, 255, 255, 0.03);
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.16);
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -18,6 +20,7 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 0.15s var(--ease-out);
@@ -56,6 +59,22 @@ img { max-width: 100%; display: block; }
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+/* Section heading pattern */
+.section-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 /* Buttons */
@@ -97,6 +116,11 @@ img { max-width: 100%; display: block; }
   background-color: var(--accent-dim);
 }
 
+.btn-sm {
+  padding: 0.55rem 1.15rem;
+  font-size: 0.8125rem;
+}
+
 /* Reveal animations */
 .reveal {
   opacity: 0;
@@ -113,6 +137,8 @@ img { max-width: 100%; display: block; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
 
 ::selection {
   background: rgba(255, 255, 255, 0.15);

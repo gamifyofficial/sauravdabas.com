@@ -5,55 +5,94 @@
 
 .footer-cta {
   text-align: center;
-  margin-bottom: 6rem;
-}
-
-.footer-label {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-tertiary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 5rem;
 }
 
 .footer-headline {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.footer-email-btn {
-  font-size: 0.9375rem;
-  padding: 1rem 2rem;
-  margin-bottom: 2rem;
+.footer-subtext {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+  max-width: 460px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
 }
 
-.footer-email-btn:hover {
+/* Contact cards grid */
+.footer-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+}
+
+.footer-contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-normal), background var(--transition-normal), transform var(--transition-normal);
+  text-align: center;
+}
+
+.footer-contact-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.footer-contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-contact-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+}
+
+.footer-contact-value {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+/* Hire button */
+.footer-hire-btn {
+  font-size: 1rem;
+  padding: 1rem 2.5rem;
+}
+
+.footer-hire-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(255, 255, 255, 0.12);
-}
-
-.footer-socials {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  transition: color var(--transition-fast);
-}
-
-.social-link:hover {
-  color: var(--text-primary);
 }
 
 /* Bottom bar */
@@ -68,14 +107,10 @@
 }
 
 .footer-logo {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.04em;
-}
-
-.footer-logo-dot {
-  color: var(--text-tertiary);
+  letter-spacing: -0.03em;
 }
 
 @media (max-width: 768px) {
@@ -84,12 +119,41 @@
   }
 
   .footer-cta {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .footer-contact-card {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .footer-contact-value {
+    font-size: 0.75rem;
   }
 
   .footer-bottom {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-contact-card {
+    flex-direction: row;
+    text-align: left;
+    padding: 1rem 1.25rem;
+  }
+
+  .footer-contact-info {
+    align-items: flex-start;
   }
 }

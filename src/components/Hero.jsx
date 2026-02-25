@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Users, Package, Radio, Clock } from 'lucide-react';
 import './Hero.css';
+
+const stats = [
+  { icon: Users, value: '37,000+', label: 'Users' },
+  { icon: Package, value: '6+', label: 'Products' },
+  { icon: Radio, value: '10M+', label: 'Reach' },
+  { icon: Clock, value: '5+', label: 'Years' },
+];
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -25,32 +32,45 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-badge">
             <span className="hero-badge-dot" />
-            Web Developer & Entrepreneur
+            Founder &amp; Product Builder
           </div>
 
           <h1 className="hero-title">
-            Building
-            <span className="hero-title-outline"> High-Performance</span>
-            <br />Digital Products.
+            I Build Products
+            <span className="hero-title-outline"> That Scale</span>
+            <br />and Drive Growth.
           </h1>
 
           <p className="hero-description">
-            I'm Saurav Dabas — I build responsive, scalable, and beautifully designed
-            mobile & web applications that drive real business results.
+            Saurav Dabas -- Founder of Gamifytech Solutions. I architect, build, and scale
+            mobile and web products from zero to tens of thousands of users, combining
+            product development with performance marketing.
           </p>
 
           <div className="hero-actions">
-            <a href="#projects" className="btn btn-primary">
-              View My Work
+            <a href="#experience" className="btn btn-primary">
+              View Experience
             </a>
             <a href="#contact" className="btn btn-outline">
               Get in Touch
             </a>
           </div>
         </div>
+
+        <div className="hero-stats">
+          {stats.map((stat, index) => (
+            <div className="hero-stat" key={index}>
+              <div className="hero-stat-icon">
+                <stat.icon size={18} />
+              </div>
+              <span className="hero-stat-value">{stat.value}</span>
+              <span className="hero-stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <a href="#projects" className="scroll-indicator" aria-label="Scroll down">
+      <a href="#experience" className="scroll-indicator" aria-label="Scroll down">
         <ArrowDown size={18} />
       </a>
     </section>

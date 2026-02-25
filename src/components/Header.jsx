@@ -23,15 +23,17 @@ const Header = () => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container header-inner">
         <a href="#" className="logo" onClick={closeMenu}>
-          SD<span className="logo-dot">.</span>
+          Saurav Dabas
         </a>
 
         <nav className={`nav ${mobileMenuOpen ? 'nav--open' : ''}`}>
-          <a href="#projects" className="nav-link" onClick={closeMenu}>Projects</a>
+          <a href="#experience" className="nav-link" onClick={closeMenu}>Experience</a>
+          <a href="#products" className="nav-link" onClick={closeMenu}>Products</a>
           <a href="#skills" className="nav-link" onClick={closeMenu}>Skills</a>
+          <a href="#education" className="nav-link" onClick={closeMenu}>Education</a>
           <a href="#contact" className="nav-link" onClick={closeMenu}>Contact</a>
-          <a href="mailto:sauravdabas4085@gmail.com" className="btn btn-primary nav-cta" onClick={closeMenu}>
-            Let's Talk
+          <a href="mailto:sauravdabas4085@gmail.com" className="btn btn-primary btn-sm nav-cta" onClick={closeMenu}>
+            Hire Me
           </a>
         </nav>
 

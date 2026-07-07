@@ -1,9 +1,838 @@
-.app {
+/* ============================= backdrop ============================= */
+
+.video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg-deep);
+}
+
+.video-bg video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story {
+  position: relative;
+  z-index: 2;
+}
+
+/* Keeps the hero's film vivid, then deepens to navy so the chapters read
+   like pages laid over it. Lives inside <main> so it spans the full story. */
+.story-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 22, 34, 0.08) 0%,
+    rgba(0, 22, 34, 0.28) 60vh,
+    rgba(0, 25, 38, 0.88) 130vh,
+    rgba(0, 25, 38, 0.88) 100%
+  );
+}
+
+.chapter {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================= chrome ============================= */
+
+.story-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px clamp(20px, 4vw, 48px);
+}
+
+.header-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.header-links {
+  display: none;
+  align-items: center;
+  gap: 34px;
+}
+
+.header-link {
+  font-size: 14px;
+  color: var(--ink-faint);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header-link:hover {
+  color: var(--ink);
+}
+
+.header-cta {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 10px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.header-cta:hover {
+  transform: scale(1.03);
+}
+
+.rail {
+  position: fixed;
+  left: clamp(14px, 2.4vw, 34px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.55;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.rail-item:hover,
+.rail-item.is-active {
+  opacity: 1;
+}
+
+.rail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.rail-item.is-active .rail-dot {
+  background: var(--ink);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+  transform: scale(1.35);
+}
+
+.rail-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.rail-item:hover .rail-label,
+.rail-item:focus-visible .rail-label,
+.rail-item.is-active .rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================= chapter scaffold ============================= */
+
+.chapter {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 16vh 0;
+  overflow: hidden;
+}
+
+.ch-inner {
+  width: min(1120px, 90vw);
+  margin-inline: auto;
+  padding-left: clamp(0px, 5vw, 72px); /* clearance for the rail */
+  position: relative;
+}
+
+.ch-numeral {
+  position: absolute;
+  right: -4vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(240px, 42vw, 560px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.ch-kicker {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 26px;
+}
+
+.ch-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 104px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.ch-lede {
+  max-width: 58ch;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.75;
+  color: var(--ink-dim);
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================= prologue — video hero ============================= */
+
+.prologue {
+  min-height: 100svh;
+}
+
+.prologue-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-left: 0;
+}
+
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 30px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(56px, 9.5vw, 132px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  max-width: 12ch;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--ink-faint);
+}
+
+.hero-sub {
+  max-width: 62ch;
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.75;
+  color: var(--ink-faint);
+  margin-top: 32px;
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 48px;
+  padding: 18px 52px;
+  border-radius: 999px;
+  font-size: 16px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover {
+  transform: scale(1.03);
+}
+
+.prologue-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: 9vh;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 44px);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.scroll-cue svg {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue svg {
+    animation: cue-bob 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes cue-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+/* ============================= shared bits ============================= */
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  font-size: 13px;
+  color: var(--ink-dim);
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  border: none;
+  border-radius: 18px;
+  background: rgba(0, 16, 26, 0.38);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+/* ============================= chapter I — hustle ============================= */
+
+.milestone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 26px);
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.milestone-card {
+  padding: clamp(20px, 2.4vw, 30px);
+}
+
+.milestone-icon {
+  display: inline-flex;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.milestone-stat {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.8vw, 40px);
+  margin-bottom: 6px;
+}
+
+.milestone-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.milestone-detail {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* ============================= chapter II — leap ============================= */
+
+.manifesto {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1.3;
+  max-width: 22ch;
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+  padding-left: clamp(20px, 3vw, 40px);
+  position: relative;
+  z-index: 1;
+}
+
+.manifesto .word {
+  display: inline;
+}
+
+/* ============================= chapter III — products ============================= */
+
+.chapter-products {
+  display: block;
+  padding: 0;
+}
+
+.products-pin {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4vh, 52px);
+  padding: 14vh 0 8vh;
+  position: relative;
+  overflow: hidden;
 }
 
-main {
+.products-head {
+  width: min(1120px, 90vw);
+  margin-inline: auto;
+  padding-left: clamp(0px, 5vw, 72px);
+  position: relative;
+  z-index: 1;
+}
+
+.products-head .ch-title {
+  margin-bottom: 12px;
+}
+
+.products-hint {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.products-track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(18px, 2.2vw, 28px);
+  width: max-content;
+  padding-left: max(5vw, calc((100vw - 1120px) / 2 + 72px));
+  padding-right: 24vw;
+  will-change: transform;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card {
+  width: clamp(300px, 27vw, 390px);
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: clamp(22px, 2.4vw, 32px);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.product-icon {
+  display: inline-flex;
+  padding: 11px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+}
+
+.product-platform {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.product-name {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.4vw, 36px);
+  margin-bottom: 12px;
+}
+
+.product-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-dim);
   flex: 1;
+  margin-bottom: 24px;
+}
+
+.product-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-stat {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink-faint);
+  transition: color 0.2s ease;
+}
+
+.product-link:hover {
+  color: var(--ink);
+}
+
+.products-end {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: 4vw;
+}
+
+.products-end-stat {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 7vw, 110px);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.products-end-label {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 10px;
+}
+
+/* ============================= chapter IV — craft ============================= */
+
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.craft-card {
+  padding: clamp(20px, 2.2vw, 28px);
+}
+
+.craft-card:hover {
+  transform: none;
+}
+
+.craft-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: var(--ink);
+}
+
+.craft-card-head h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.craft-aside {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  position: relative;
+  z-index: 1;
+}
+
+.aside-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 22px;
+}
+
+.aside-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+
+.aside-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding-block: 10px;
+}
+
+.aside-row + .aside-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.aside-main {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.aside-sub {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.aside-note {
+  font-size: 12px;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+/* ============================= epilogue ============================= */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(14px, 1.8vw, 22px);
+  max-width: 760px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 16px;
+  padding: 18px 22px;
+  text-decoration: none;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+.contact-icon {
+  display: inline-flex;
+  padding: 11px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contact-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.contact-value {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hire-btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-style: italic;
+  text-decoration: none;
+  color: var(--bg-deep);
+  background: var(--ink);
+  border-radius: 999px;
+  padding: 16px 36px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.hire-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 44px rgba(255, 255, 255, 0.25);
+}
+
+.story-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  margin-top: 12vh;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 13px;
+  color: var(--ink-faint);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================= responsive ============================= */
+
+@media (min-width: 900px) {
+  .header-links {
+    display: flex;
+  }
+}
+
+@media (max-width: 1100px) {
+  .ch-numeral {
+    opacity: 0.09;
+  }
+}
+
+/* 899.98px (not 900) so this never overlaps the JS pin's min-width: 900px */
+@media (max-width: 899.98px) {
+  .rail {
+    display: none;
+  }
+
+  .ch-inner,
+  .products-head {
+    padding-left: 0;
+  }
+
+  .milestone-grid,
+  .craft-grid,
+  .craft-aside,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* products fall back to a vertical stack — no pin, no horizontal scrub.
+   Must mirror the JS gate in ChapterProducts.jsx: the pin only runs on
+   (min-width: 900px) and (prefers-reduced-motion: no-preference), so the
+   stacked layout covers BOTH small screens and reduced-motion desktops. */
+@media (max-width: 899.98px), (prefers-reduced-motion: reduce) {
+  .products-pin {
+    min-height: 0;
+    padding: 16vh 0;
+  }
+
+  .products-hint {
+    display: none;
+  }
+
+  .products-track {
+    width: min(1120px, 90vw);
+    margin-inline: auto;
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .product-card {
+    width: 100%;
+  }
+
+  .products-end {
+    padding: 30px 0 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .prologue-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+
+  .header-cta {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .story-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* ============================= reduced motion ============================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

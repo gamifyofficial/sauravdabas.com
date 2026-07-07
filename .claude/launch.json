@@ -6,6 +6,20 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 5173
+    },
+    {
+      "name": "velorah",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/sauravdabas/Documents/Antigravity Files/velorah",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5174"
+      ],
+      "port": 5174
     }
   ]
 }

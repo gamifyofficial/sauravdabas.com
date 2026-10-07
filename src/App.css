@@ -524,14 +524,21 @@
 
 .product-foot {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .product-stat {
   font-size: 13px;
   font-weight: 600;
   color: var(--ink);
+}
+
+.product-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
 }
 
 .product-link {

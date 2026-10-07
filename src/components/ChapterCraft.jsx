@@ -5,22 +5,49 @@ const skillGroups = [
   {
     title: 'Development',
     icon: Code2,
-    skills: ['Flutterflow', 'WordPress', 'Shopify', 'Firebase', 'Firestore', 'Google Cloud', 'Google Auth', 'n8n'],
+    skills: [
+      'Flutterflow',
+      'Swift & SwiftUI',
+      'Kotlin',
+      'Next.js',
+      'Firebase',
+      'Supabase',
+      'Shopify',
+      'WordPress',
+      'Google Cloud',
+      'n8n',
+    ],
   },
   {
     title: 'Marketing & Growth',
     icon: TrendingUp,
-    skills: ['Facebook Ads', 'Google Ads', 'AdMob', 'Influencer Marketing', 'Google Analytics', 'Mailchimp'],
+    skills: [
+      'Google Ads',
+      'Facebook Ads',
+      'AdMob',
+      'Influencer Marketing',
+      'App Store Optimization',
+      'Google Analytics',
+      'Mailchimp',
+    ],
   },
   {
-    title: 'AI & APIs',
+    title: 'AI & Monetization',
     icon: Bot,
-    skills: ['OpenAI Platform', 'OpenAI Vision API', 'Gemini API', 'ChatGPT', 'RevenueCat'],
+    skills: [
+      'OpenAI Platform',
+      'OpenAI Vision',
+      'Gemini API',
+      'Claude Code',
+      'RevenueCat',
+      'Superwall',
+      'Dodo Payments',
+    ],
   },
   {
     title: 'Design & Tools',
     icon: Palette,
-    skills: ['Figma', 'Canva', 'MS Office', 'Google Storage'],
+    skills: ['Figma', 'Canva', 'Xcode', 'Vercel', 'WhatsApp Business API'],
   },
 ];
 
@@ -41,9 +68,9 @@ const ChapterCraft = () => (
     numeral="IV"
     kicker="Chapter IV · The toolkit"
     title={['Tools change.', 'Shipping doesn’t.']}
-    lede="Self-taught across the whole stack a product needs — building, monetizing,
-      marketing, automating. The toolkit grew with every chapter; the habit of
-      shipping stayed the same."
+    lede="Self-taught across the whole stack a product needs — no-code when it's fastest,
+      native Swift and Kotlin when it matters, AI in the loop everywhere. The toolkit
+      grew with every chapter; the habit of shipping stayed the same."
   >
     <div className="craft-grid" data-reveal>
       {skillGroups.map((group) => (

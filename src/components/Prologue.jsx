@@ -5,9 +5,9 @@ import { scrollToEl } from '../story/smoothScroll';
 
 const stats = [
   { value: 37000, label: 'Users reached', format: (n) => `${Math.round(n).toLocaleString('en-US')}+` },
-  { value: 6, label: 'Products shipped', format: (n) => `${Math.round(n)}` },
+  { value: 12, label: 'Products shipped', format: (n) => `${Math.round(n)}+` },
   { value: 10, label: 'Social reach', format: (n) => `${Math.round(n)}M+` },
-  { value: 5, label: 'Years building', format: (n) => `${Math.round(n)}+` },
+  { value: 6, label: 'Years building', format: (n) => `${Math.round(n)}+` },
 ];
 
 // Opening scene — the cinematic video hero. Entrances are the CSS fade-rise
@@ -49,9 +49,10 @@ const Prologue = () => {
         </h1>
 
         <p className="hero-sub animate-fade-rise-delay">
-          I&apos;m Saurav Dabas — solo founder of Gamifytech Solutions. For five years
+          I&apos;m Saurav Dabas — solo founder of Gamifytech Solutions. For six years
           I&apos;ve been writing the same story in different inks: imagine a product,
-          build it alone, ship it, and scale it. This site is that story.
+          build it alone, ship it, and scale it. A dozen products later — across iOS,
+          Android, macOS and the web — this site is that story.
         </p>
 
         <a

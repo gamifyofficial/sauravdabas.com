@@ -2,7 +2,7 @@ import { scrollToEl } from '../story/smoothScroll';
 
 const links = [
   { label: 'Story', target: '#hustle' },
-  { label: 'Products', target: '#products' },
+  { label: 'Apps', target: '#products' },
   { label: 'Toolkit', target: '#craft' },
   { label: 'Contact', target: '#epilogue' },
 ];

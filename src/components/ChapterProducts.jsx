@@ -3,72 +3,130 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowUpRight,
+  Newspaper,
   Heart,
-  MessageCircle,
   Gamepad2,
-  Smartphone,
-  Search,
-  ShoppingBag,
+  MessageCircle,
+  Flower2,
+  Languages,
+  HeartPulse,
+  Mic,
+  Laptop,
 } from 'lucide-react';
 import useChapterScene from '../story/useChapterScene';
 import { getLenis } from '../story/smoothScroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Every app here is live on the App Store and/or Google Play under
+// Gamifytech Solutions. Ordered by scale, then by recency.
 const products = [
   {
     title: 'Alova',
     platform: 'iOS · Android · Web',
-    icon: Heart,
+    icon: Newspaper,
     stat: '30,000+ users',
     description:
-      'The flagship. Flutterflow and Firebase at the core, RevenueCat and AdMob for revenue, self-hosted n8n and the OpenAI API doing the heavy lifting behind the scenes.',
-    link: 'https://alova.one',
+      'Tech & AI, summarized. The flagship — a daily digest built on Flutterflow and Firebase, with self-hosted n8n pipelines and the OpenAI API doing the summarizing.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/alova/id6575347612' },
+      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.gamifytech.alova' },
+    ],
   },
   {
     title: 'Shaadi AI',
     platform: 'iOS · Android · Web',
-    icon: MessageCircle,
+    icon: Heart,
     stat: '2,000+ users',
     description:
-      'AI-powered wedding platform. OpenAI Vision and Gemini Nano Banana generate the magic; RevenueCat, AdMob and Firebase keep it running.',
-    link: 'https://myshaadiai.com',
+      'One app for every shaadi need. AI-generated wedding visuals and planning, powered by OpenAI Vision and Gemini, monetized with RevenueCat and AdMob.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/shaadi-ai/id6752545086' },
+      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.gamifytech.myshaadiai' },
+      { label: 'Website', href: 'https://myshaadiai.com' },
+    ],
   },
   {
     title: 'Gamify',
     platform: 'Android',
     icon: Gamepad2,
-    stat: '3,000+ users',
+    stat: '3,000+ users · 4.7★',
     description:
-      'The company namesake. Built on Flutterflow with a Firebase backend and AdMob monetization.',
-    link: 'https://gamifytechsolutions.com',
+      'Esports and gaming community app — the company namesake. Built on Flutterflow with a Firebase backend and AdMob monetization.',
+    links: [
+      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.mycompany.gamifyapp' },
+    ],
   },
   {
     title: 'Qkap',
-    platform: 'iOS',
-    icon: Smartphone,
+    platform: 'iOS · Web',
+    icon: MessageCircle,
     stat: '2,000+ users',
     description:
-      'An iOS-first product powered by Flutterflow, Firebase, RevenueCat and the OpenAI Vision API.',
-    link: null,
+      'An AI social assistant on iOS — captions, hashtags and replies on demand — and on the web, a shoppable link-in-bio storefront for creators.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/qkap-social-assistant/id6737744930' },
+      { label: 'Website', href: 'https://qkap.app' },
+    ],
   },
   {
-    title: 'FastSEO',
-    platform: 'Web app',
-    icon: Search,
-    stat: 'Live product',
+    title: 'Naam Jap Life',
+    platform: 'iOS · Android · Web',
+    icon: Flower2,
+    stat: '4.2★ on Google Play',
     description:
-      'An SEO tool built on Base44 with Dodo payments integrated for friction-free monetization.',
-    link: 'https://FastSEO.app',
+      'A digital mala for chanting. Haptic counting, daily goals, streaks and mindful reminders — fully private, nothing ever leaves the device.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/naam-jap-life-digital-mala/id6757205385' },
+      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.gamifytechsolutions.naamjap' },
+      { label: 'Website', href: 'https://naamjap.life' },
+    ],
   },
   {
-    title: 'Daily Sale',
-    platform: 'E-commerce · Shopify',
-    icon: ShoppingBag,
-    stat: '10M+ reach',
+    title: 'LKIN',
+    platform: 'iOS',
+    icon: Languages,
+    stat: '22 languages',
     description:
-      'A Shopify storefront from the reselling era — part of the multi-store operation that reached ten million people.',
-    link: 'https://dailysale.in',
+      'Learn words, unlock apps. Distracting apps stay locked behind a micro-lesson — real Screen Time enforcement, spaced repetition, and 147 hand-drawn illustrations.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/lkin-learn-words-unlock-apps/id6791769564' },
+      { label: 'Website', href: 'https://lkin-app.vercel.app' },
+    ],
+  },
+  {
+    title: 'Shravan Club',
+    platform: 'iOS · WhatsApp',
+    icon: HeartPulse,
+    stat: 'AI personal care',
+    description:
+      'Medication reminders in Hindi, BP, glucose and GLP-1 tracking, Apple Health sync — and a 24/7 AI health companion that lives inside WhatsApp.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/shravan-club-ai-personal-care/id6761014076' },
+      { label: 'Website', href: 'https://shravan.club' },
+    ],
+  },
+  {
+    title: 'A2Z Speech Therapy',
+    platform: 'iOS',
+    icon: Mic,
+    stat: 'Free · Education',
+    description:
+      'Pronunciation practice across 22 languages — flashcards with speech recognition, ten categories, hundreds of items. For therapists, parents and learners.',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/in/app/a2z-speech-therapy/id6760371121' },
+    ],
+  },
+  {
+    title: 'Ultimate Notch',
+    platform: 'macOS',
+    icon: Laptop,
+    stat: 'Native Swift · 1.3 MB',
+    description:
+      'Turns the MacBook notch into a toolbox: camera preview, screenshots, clipboard history, timer, shortcuts and AirDrop. Hidden until you hover.',
+    links: [
+      { label: 'Mac App Store', href: 'https://apps.apple.com/in/app/ultimate-notch/id6778586782?mt=12' },
+    ],
   },
 ];
 
@@ -140,11 +198,11 @@ const ChapterProducts = () => {
         </div>
         <div className="ch-inner products-head">
           <p className="ch-kicker" data-reveal>
-            Chapter III · The portfolio
+            Chapter III · The apps
           </p>
           <h2 className="ch-title">
             <span className="line">
-              <span className="line-in">Six products,</span>
+              <span className="line-in">Nine apps,</span>
             </span>
             <span className="line">
               <span className="line-in">shipped solo.</span>
@@ -167,16 +225,19 @@ const ChapterProducts = () => {
               <p className="product-desc">{product.description}</p>
               <div className="product-foot">
                 <span className="product-stat">{product.stat}</span>
-                {product.link && (
-                  <a
-                    className="product-link"
-                    href={product.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit <ArrowUpRight size={14} aria-hidden="true" />
-                  </a>
-                )}
+                <div className="product-links">
+                  {product.links.map((link) => (
+                    <a
+                      className="product-link"
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label} <ArrowUpRight size={12} aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </article>
           ))}

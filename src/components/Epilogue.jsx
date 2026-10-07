@@ -1,34 +1,18 @@
-import { Mail, Phone, Linkedin, Twitter } from 'lucide-react';
+import { Linkedin, Twitter } from 'lucide-react';
 import Chapter from './Chapter';
 
 const contacts = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'sauravdabas4085@gmail.com',
-    href: 'mailto:sauravdabas4085@gmail.com',
-    external: false,
-  },
-  {
-    icon: Phone,
-    label: 'Phone',
-    value: '+91 83684 85477',
-    href: 'tel:+918368485477',
-    external: false,
-  },
   {
     icon: Linkedin,
     label: 'LinkedIn',
     value: 'in/sauravdabas',
     href: 'https://www.linkedin.com/in/sauravdabas/',
-    external: true,
   },
   {
     icon: Twitter,
     label: 'Twitter / X',
     value: '@SauravDabas2',
     href: 'https://x.com/SauravDabas2',
-    external: true,
   },
 ];
 
@@ -48,7 +32,8 @@ const Epilogue = () => (
           className="contact-card glass-card"
           key={contact.label}
           href={contact.href}
-          {...(contact.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <div className="contact-icon">
             <contact.icon size={18} aria-hidden="true" />
@@ -61,8 +46,14 @@ const Epilogue = () => (
       ))}
     </div>
 
-    <a className="hire-btn" data-reveal href="mailto:sauravdabas4085@gmail.com">
-      Write the first line — say hello
+    <a
+      className="hire-btn"
+      data-reveal
+      href="https://www.linkedin.com/in/sauravdabas/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Write the first line — say hello on LinkedIn
     </a>
 
     <div className="story-footer" data-reveal>
